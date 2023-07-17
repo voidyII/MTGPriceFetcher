@@ -46,6 +46,8 @@ def main():
         print(f"Price: {price}")
     else:
         print("Price not found")
+    
+    session.close
 
     #print(response.html.html)
 
