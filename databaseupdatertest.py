@@ -7,8 +7,16 @@ def main():
     cursor.execute("select * from CompleteCollection")
 
     for row in cursor.fetchall():
-        data = row[1], row[4], row[5], row[9], row[13]
-        print (data)
+        sCode = row[1]
+        cNum = row[4]
+        cName = row[5]
+        cFoil = row[9]
+        if cFoil == "yes":
+            cFoil = True
+        else:
+            cFoil = False
+        cCond = row[13]
+        print (sCode, cNum, cName, cFoil, cCond)
 
 if __name__ == "__main__":
     main()
