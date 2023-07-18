@@ -35,7 +35,7 @@ def main():
     response = session.get(url)
     print (response)
 
-    response.html.render(timeout=30000, sleep=1)
+    response.html.render(timeout=25000, sleep=1)
 
     price_elements = response.html.find(".price")
 
