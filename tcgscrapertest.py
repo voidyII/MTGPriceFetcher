@@ -4,6 +4,7 @@ from requests_html import AsyncHTMLSession
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from databaseupdatertest import datareader
 
 # def main():
 #     #chrome_driver_path = "D:/downloads/chromedriver_win32/chromedriver.exe"
@@ -29,6 +30,7 @@ from selenium.webdriver.chrome.options import Options
 #     main()
 
 def main():
+    datareader()
     session = HTMLSession()
     url = "https://www.tcgplayer.com/product/488270/magic-universes-beyond-the-lord-of-the-rings-tales-of-middle-earth-the-one-ring-borderless?xid=pi1b39d751-b865-4dee-b94c-e6d6494dfc3a&page=1&Language=English.html"
     #response = requests.get(url)
