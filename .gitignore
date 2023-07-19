@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 __pycache__/
 responsecontent.json
+=======
+*test.py
+__pycache__/
+>>>>>>> main
