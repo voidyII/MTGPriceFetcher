@@ -1,4 +1,4 @@
-from scryfallfetch import API_Call
+from scryfetch import API_Call
 import csv
 import pyodbc
 import json
