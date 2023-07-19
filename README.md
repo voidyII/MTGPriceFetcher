@@ -1,7 +1,8 @@
 # ScryfallBulkRetriever README.md
 A script to retrieve bulk data from scryfall.com via their API and then writing it in a csv file.
+## Current version: v1.1
 
-## Usage for v1.0:
+## Usage for v1.x:
 1. Make sure you have the newest version of Python 3 installed (tested on python 3.11)
 2. Change the path name in scryfallwrite.py to where you are storing your database (line 16)
 3. Change the table name in scryfallwrite.py to what table you want to read from
