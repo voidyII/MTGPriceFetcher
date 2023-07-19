@@ -1,2 +1,8 @@
 __pycache__/
-responsecontent.json
+*.json
+*.csv
+.vscode/
+build/
+dist/
+scrywrite.spec
+scrywrite.exe
