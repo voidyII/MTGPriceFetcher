@@ -13,9 +13,9 @@ def scrywrite():
 
           # connect access database with script
           conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
-                                r"DBQ=[insert/path/to/database]")
+                                r"DBQ=D:/MTGCollection/MTGCollection.accdb")
           cursor = conn.cursor()
-          cursor.execute("select * from [insert_table_name]")
+          cursor.execute("select * from CompleteCollection")
           print("database connection established")
 
           # open csv file and create writer variable

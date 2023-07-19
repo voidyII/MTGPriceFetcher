@@ -6,3 +6,4 @@ build/
 dist/
 scrywrite.spec
 scrywrite.exe
+*.zip
