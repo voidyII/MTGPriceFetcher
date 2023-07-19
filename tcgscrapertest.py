@@ -30,16 +30,16 @@ from databaseupdatertest import datareader
 #     main()
 
 def main():
-    datareader()
+    # datareader()
     session = HTMLSession()
-    url = "https://www.tcgplayer.com/product/488270/magic-universes-beyond-the-lord-of-the-rings-tales-of-middle-earth-the-one-ring-borderless?xid=pi1b39d751-b865-4dee-b94c-e6d6494dfc3a&page=1&Language=English.html"
-    #response = requests.get(url)
+    session.verify = True
+    url = "https://www.tcgplayer.com/search/magic/product?productLineName=magic&page=1&view=grid"
     response = session.get(url)
     print (response)
 
-    response.html.render(timeout=25000, sleep=1)
+    response.html.render(timeout=20000, sleep=1)
 
-    price_elements = response.html.find(".price")
+    price_elements = response.html.find(".search-result__market-price--value")
 
     if price_elements:
         for price_element in price_elements:
