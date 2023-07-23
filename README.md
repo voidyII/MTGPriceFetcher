@@ -13,5 +13,4 @@ A script to retrieve bulk data from scryfall.com via their API and then writing 
 For 2.0 I will add a database writing functionality as well as an executable for ease of use
 
 If you like what I'm doing and want to support my work, here's a link to my ko-fi: https://ko-fi.com/voidyii
-
 Donations make the progress on this project more smoothly and also help motivating me to keep going. It means a lot! <3
