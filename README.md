@@ -1,4 +1,4 @@
-# ScryfallBulkRetriever README.md
+# ScryFetcher README.md
 A script to retrieve bulk data from scryfall.com via their API and then writing it in a csv file.
 ## Current version: v1.1
 
