@@ -35,8 +35,6 @@ class databaseupdate:
           
           dbFile = pathlib.Path(r"%s" % db_loc)
 
-          print(db_loc)
-          print(tb_loc)
           # connect access database with script
           conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
                                      r"DBQ=%s" % dbFile)
