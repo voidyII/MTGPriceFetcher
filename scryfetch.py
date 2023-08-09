@@ -4,10 +4,10 @@ import json
 class API_Call:
      def call_func():
           # declare api endpoint variable
-          url = "https://api.scryfall.com/bulk-data/all-cards"
+          scryurl = "https://api.scryfall.com/bulk-data/all-cards"
 
           # get request to scryfall api endpoint (url)
-          response = requests.get(url)
+          response = requests.get(scryurl)
           # print status code of response
           print (response)
 

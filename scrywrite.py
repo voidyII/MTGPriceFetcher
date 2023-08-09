@@ -2,6 +2,7 @@ from scryfetch import API_Call
 import os
 import csv
 import pyodbc
+import pathlib
 import json
 
 class databaseupdate:
@@ -18,17 +19,30 @@ class databaseupdate:
      def scrywrite():
           if os.path.isfile("./fileloc.txt"):
                file_loc = open("./fileloc.txt", "r")
-               db_loc = file_loc.readline(1)
-               tb_loc = file_loc.readline(2)
+               fileContent = file_loc.readlines()
           else:
                newFile_loc = open("./fileloc.txt", "w")
                db_locw = databaseupdate.dbinput()
                tb_locw = databaseupdate.tbinput()
                newFile_loc.write(db_locw+"\n")
-               newFile_loc.write(tb_locw+"\n")
+               newFile_loc.write(tb_locw)
                newFile_loc = open("./fileloc.txt", "r")
-               db_loc = newFile_loc.readline(1)
-               tb_loc = newFile_loc.readline(2)
+               fileContent = newFile_loc.readlines()
+
+
+          db_loc = fileContent[0]
+          tb_loc = fileContent[1]
+          
+          dbFile = pathlib.Path(r"%s" % db_loc)
+
+          print(db_loc)
+          print(tb_loc)
+          # connect access database with script
+          conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
+                                     r"DBQ=%s" % dbFile)
+          cursor = conn.cursor()
+          cursor.execute("select * from %s" % tb_loc)
+          print("database connection established")
           
           call_response = API_Call.call_func()
           if call_response == True:
@@ -36,13 +50,6 @@ class databaseupdate:
                jData = open("./bulkdata.json", encoding="utf-8")
                data = json.load(jData)
                print("bulkdata.json has been loaded")
-
-               # connect access database with script
-               conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
-                                     r"DBQ=%s" % db_loc)
-               cursor = conn.cursor()
-               cursor.execute("select * from "+tb_loc)
-               print("database connection established")
 
                # open csv file and create writer variable
                file = open("./scryfallbulk.csv", "w", encoding = "UTF-8", newline = "")
