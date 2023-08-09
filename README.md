@@ -1,6 +1,7 @@
 # ScryFetcher README.md
 A script to retrieve bulk data from scryfall.com via their API and then writing it in a csv file.
 ## Current version: v1.1.3
+Progress Tracker: https://trello.com/b/p1AS9164/mtgpricefetcher-development-progress
 
 ## Usage for v1.1.3 and further:
 1. Make sure you have the newest version of Python 3 installed (tested on python 3.11)
