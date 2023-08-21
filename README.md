@@ -11,6 +11,7 @@ Progress Tracker: https://trello.com/b/p1AS9164/mtgpricefetcher-development-prog
 ### Dislcaimer: At the current stage the csv will only be filled if there are matching values in the specified columns during the loop. For now this is unique to what I have in my database.
 
 For 2.0 I will add a database writing functionality as well as an executable for ease of use
+I also plan on using either the TGCPlayer or Cardmarket API in the future. Unfortunately, either they don't accept applications at this time or the requirements are above of what I am currently doing at the moment. So for now I will have to use Scryfall's API (which is the most useful for adding card details, as price informations is not too reliable).
 
 If you like what I'm doing and want to support my work, here's a link to my ko-fi: https://ko-fi.com/voidyii
 Donations make the progress on this project go faster and also help motivating me to keep going. It means a lot! <3

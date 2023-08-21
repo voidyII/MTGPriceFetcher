@@ -1,11 +1,11 @@
-from scryfetch import API_Call
+from webfetch import API_Call
 import os
 import csv
 import pyodbc
 import pathlib
 import json
 
-class databaseupdate:
+class csvWriter:
      def dbinput():
           print("Please enter your database location (as path): ")
           db_input = input()
@@ -22,8 +22,8 @@ class databaseupdate:
                fileContent = file_loc.readlines()
           else:
                newFile_loc = open("./fileloc.txt", "w")
-               db_locw = databaseupdate.dbinput()
-               tb_locw = databaseupdate.tbinput()
+               db_locw = csvWriter.dbinput()
+               tb_locw = csvWriter.tbinput()
                newFile_loc.write(db_locw+"\n")
                newFile_loc.write(tb_locw)
                newFile_loc = open("./fileloc.txt", "r")
@@ -36,9 +36,9 @@ class databaseupdate:
           dbFile = pathlib.Path(r"%s" % db_loc)
 
           # connect access database with script
-          conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
+          db = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
                                      r"DBQ=%s" % dbFile)
-          cursor = conn.cursor()
+          cursor = db.cursor()
           cursor.execute("select * from %s" % tb_loc)
           print("database connection established")
           
@@ -73,8 +73,9 @@ class databaseupdate:
                          if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "no":
                               writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur")])
                print("finished writing")
+          db.close()
 
-databaseupdate.scrywrite()
+csvWriter.scrywrite()
 
 os.remove("D:/Coding/VSCodeStuff/ScryFetcher/bulkdata.json")
 os.remove("D:/Coding/VSCodeStuff/ScryFetcher/responsecontent.json")
