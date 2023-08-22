@@ -15,23 +15,38 @@ class csvWriter:
           print("Please enter the name of the table you want to take data from: ")
           tb_input = input()
           return tb_input
-
-     def scrywrite():
-          if os.path.isfile("./fileloc.txt"):
-               file_loc = open("./fileloc.txt", "r")
-               fileContent = file_loc.readlines()
+     
+     def tbinput_col():
+          print("Please enter the name of the column you want to write the price data into: ")
+          tbinput_col = input()
+          return tbinput_col
+     
+     def locJson_check():
+          if os.path.isfile("./fileloc.json"):
+               return
           else:
-               newFile_loc = open("./fileloc.txt", "w")
+               #inputs for file locations
                db_locw = csvWriter.dbinput()
                tb_locw = csvWriter.tbinput()
-               newFile_loc.write(db_locw+"\n")
-               newFile_loc.write(tb_locw)
-               newFile_loc = open("./fileloc.txt", "r")
-               fileContent = newFile_loc.readlines()
+               tb_col = csvWriter.tbinput_col()
+               #json list layout
+               dicLoc = {"db_loc":db_locw, "tb_loc":tb_locw, "tb_col":tb_col}
+               #saves data to json format
+               json_loc = json.dumps(dicLoc, indent=3)
+               #write into json file
+               with open("./fileloc.json", "w") as outfile:
+                    outfile.write(json_loc)                   
+               #closes file and ends function
+               outfile.close()
+               return
 
+     def scrywrite():
+          csvWriter.locJson_check()
+          json_locFile = open("./fileloc.json", "r")
+          fileContent = json.load(json_locFile)
 
-          db_loc = fileContent[0]
-          tb_loc = fileContent[1]
+          db_loc = fileContent.get("db_loc")
+          tb_loc = fileContent.get("tb_loc")
           
           dbFile = pathlib.Path(r"%s" % db_loc)
 
@@ -73,11 +88,11 @@ class csvWriter:
                          if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "no":
                               writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur")])
                print("finished writing")
+
           db.close()
+          jData.close()
+          # os.remove("D:/Coding/VSCodeStuff/ScryFetcher/bulkdata.json")
+          # os.remove("D:/Coding/VSCodeStuff/ScryFetcher/responsecontent.json")
+          print("Deleted json files")
 
-csvWriter.scrywrite()
-
-os.remove("D:/Coding/VSCodeStuff/ScryFetcher/bulkdata.json")
-os.remove("D:/Coding/VSCodeStuff/ScryFetcher/responsecontent.json")
-
-print("Deleted json files")
+#csvWriter.scrywrite()

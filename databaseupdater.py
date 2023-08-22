@@ -1,46 +1,56 @@
 import pyodbc
 import pathlib
+import json
+import os
 from localwrite import csvWriter
 
-def datareader():
-    file_loc = open("./fileloc.txt", "r+")
-    fileContent = file_loc.readlines()
+class dbUpdate:
+    def fileloc_check():
+        file_loc = open("./fileloc.json", "r+")
+        fileContent = json.load(file_loc)
 
-    if fileContent[3] == None:
-        print("Please enter column specifier to add prices. If you want the complete data to be replaced, leave blank.")
-        tb_col = input()
-        file_loc.write(tb_col+"\n")
-    else: 
-        db_loc = fileContent[0]
-        tb_loc = fileContent[1]
-        tb_colLoc = fileContent[3]
+        if os.path.isfile("./fileloc.json"):
+               return
+        else: 
+            print("fileloc.json could not be found. Program will now terminate")
 
-    dbFile = pathlib.Path(r"%s" % db_loc)
+    def dbConnect():
+        csvWriter.scrywrite()
+        # filelocs = dbUpdate.fileloc_check()
+        # print(filelocs)
+        # db_loc = filelocs[0]
+        # tb_loc = filelocs[1]
+        # tb_colLoc = filelocs[2]
 
-    tb_col2 = "{tb_loc}.{tb_colLoc}"
+        # dbFile = pathlib.Path(r"%s" % db_loc)
 
-    # connect access database with script
-    conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
-                              r"DBQ=%s" % dbFile)
-    cursor = conn.cursor()
-    print("database connection established")
+        # print(dbFile)
 
-    for row in cursor.fetchall():
-        # convert float value in database to string
-        if row[4] != None:
-            flV = row[4]
-        else: flV = 0
-        flV = int(flV)
-        flV = str(flV)
-        # # if card is foil, write eur_foil in csv
-        # if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "yes":
-        #     writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur_foil")])
-        # #if card is not a foil, write eur in csv
-        # if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "no":
-        #         writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur")])
+        # tb_col2 = f"{tb_loc}.{tb_colLoc}"
+        
+        # print(tb_col2)
 
-    writeText = "Insert into %s (F17) values"
+        # connect access database with script
+        # conn = pyodbc.connect(r"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};"
+        #                         r"DBQ=%s" % dbFile)
+        # cursor = conn.cursor()
+        # cursor.execute("select * from %s" % tb_col2)
+        # print("database connection established")
 
+        #for row in cursor.fetchall():
+            # convert float value in database to string
+            # if row[4] != None:
+            #     flV = row[4]
+            # else: flV = 0
+            # flV = int(flV)
+            # flV = str(flV)
+            # # if card is foil, write eur_foil in csv
+            # if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "yes":
+            #     writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur_foil")])
+            # #if card is not a foil, write eur in csv
+            # if item.get("collector_number") == flV and item.get("name") == row[5] and item.get("lang") == row[14] and item.get("set") == row[1].lower() and row[9] == "no":
+            #         writer.writerow([item.get("set"), item.get("collector_number"), item.get("name"), pItem.get("eur")])
 
-if __name__ == "__main__":
-    datareader()
+        #writeText = "Insert into %s values"
+
+dbUpdate.dbConnect()

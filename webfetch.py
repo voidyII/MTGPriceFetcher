@@ -38,6 +38,7 @@ class API_Call:
           print("bulkdata.json has been created")
           bulkjson.write(bulkResponse.text)
           bulkjson.close()
+          resjData.close()
           print("bulkdata.json has finished writing")
 
           return True
