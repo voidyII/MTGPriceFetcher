@@ -2,7 +2,7 @@
 A script to retrieve (price) data from scryfall.com via their API and then writing it in a csv file.
 ## Current version: v1.2
 Progress Tracker: https://trello.com/b/p1AS9164/mtgpricefetcher-development-progress
-Currently there's an issue with deleting the API jsons, I'm working on a fix
+Currently there's an issue with deleting the API jsons, I'm working on a fix. They have to be deleted manually in this version.
 
 ## Usage for v1.2 and further:
 1. Make sure you have the newest version of Python 3 installed (tested on python 3.11)
